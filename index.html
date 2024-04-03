@@ -136,8 +136,15 @@
                 // Calcular o lucro usando a função fornecida
                 let lucroResultado = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda);
 
+                // Formatar o número para exibir separadores de milhares e duas casas decimais
+                let lucroFormatado = lucroResultado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                // Remover a parte decimal se for zero
+                lucroFormatado = lucroFormatado.replace(/,00$/, '');
+
                 // Exibir o resultado na página
-                document.getElementById("resultado").innerText = "Seu lucro será de " + lucroResultado.toFixed(0) + " coins";
+                // document.getElementById("resultado").innerText = "Seu lucro será de " + lucroFormatado.toFixed(0) + " coins";
+                document.getElementById("resultado").innerText = "Seu lucro será de " + lucroFormatado + " coins";
             });
         });
     </script>
