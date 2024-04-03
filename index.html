@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Lucro</title>
+    <title>Simulador de Lucro</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/capivara.png" type="image/x-icon">
     
 </head>
 <body>
@@ -53,9 +54,27 @@
     <!-- <div id="resultado"></div> -->
     
     <script>
+
+        function validarCampos() {
+            let campos = document.querySelectorAll('input[required]');
+            for (let i = 0; i < campos.length; i++) {
+                if (!campos[i].value) {
+                    alert('Por favor, preencha todos os campos.');
+                        return false;
+                    }
+                }
+                return true;
+        }
+
         // Função para calcular o lucro líquido com base nas unidades compradas, preço de compra,
         // valor unitário, unidades vendidas e preço de venda
         function calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda) {
+
+            // Verificar se todos os campos estão preenchidos
+            if (!validarCampos()) {
+                return;
+            }
+
             // Calcula o investimento total
             let investimento = unidadesCompra * precoCompra;
 
