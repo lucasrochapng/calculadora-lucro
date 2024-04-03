@@ -109,3 +109,52 @@ button {
 button:hover {
     background-color: rgb(0, 69, 173);
 }
+
+#notificacao {
+    display: none; /* Inicialmente, a notificação estará oculta */
+    position: fixed;
+    top: 10px;
+    width: 300px;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    justify-content: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 2px;
+    z-index: 9999;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px;
+    gap: 10px;
+    animation: slideIn 1s forwards; /* Animação de entrada */
+}
+
+#notificacao img {
+    width: 50px;
+}
+
+#notificacao h3 {
+    color: red;
+}
+
+@keyframes slideIn {
+    from {
+      transform: translateY(-140%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-200%);
+    }
+  }
+  
+  #notificacao.esconder {
+    animation: slideOut 2.0s forwards; /* Animação de saída */
+  }
+  

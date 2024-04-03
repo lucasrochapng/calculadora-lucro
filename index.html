@@ -51,6 +51,12 @@
 
     </form>
 
+    <div id="notificacao" class="esconder">
+        <img src="img/capivara-error.png" alt="error">
+        <h3>Preencha todos os campos para calcular o seu lucro!</h3>
+    </div>
+
+
     <!-- <div id="resultado"></div> -->
     
     <script>
@@ -59,11 +65,22 @@
             let campos = document.querySelectorAll('input[required]');
             for (let i = 0; i < campos.length; i++) {
                 if (!campos[i].value) {
-                    alert('Por favor, preencha todos os campos.');
+                    exibirNotificacao('Por favor, preencha todos os campos.');
                         return false;
                     }
                 }
                 return true;
+        }
+
+        function exibirNotificacao(mensagem) {
+            const notificacao = document.getElementById('notificacao');
+            // notificacao.innerText = mensagem;
+            notificacao.style.display = 'flex'; // Exibir a notificação
+            notificacao.classList.remove('esconder');
+            setTimeout(function() {
+                //notificacao.style.display = 'none'; // Ocultar a notificação após alguns segundos
+                notificacao.classList.add('esconder');
+            }, 5000); // 3000 milissegundos = 3 segundos
         }
 
         // Função para calcular o lucro líquido com base nas unidades compradas, preço de compra,
