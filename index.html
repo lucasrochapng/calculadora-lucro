@@ -4,30 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Lucro</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
 </head>
 <body>
-    <h1>Calculadora de Lucro</h1>
+    
+    
     <form id="calculoForm">
-        <label for="unidadesCompra">Unidades de Compra:</label>
-        <input type="number" id="unidadesCompra" required>
+
+        <h1>SIMULADOR DE LUCRO KAKELE</h1>
+
+        <div id="box">
+            <h3>Oferta de Compra</h3>
+            <label for="unidadesCompra">Unidades:</label>
+            <input type="number" id="unidadesCompra" placeholder="Qtd. de itens para comprar" required>
+        
+            <label for="precoCompra">Moedas por Unidade:</label>
+            <input type="number" id="precoCompra" placeholder="Preço por cada unidade do item" required>
+        </div>
+
         <br>
-        <label for="precoCompra">Preço de Compra:</label>
-        <input type="number" id="precoCompra" required>
+
+        <div id="box">
+            <h3>Oferta de Venda</h3>
+            <label for="unidadesVenda">Unidades:</label>
+        
+            <input type="number" id="unidadesVenda" placeholder="Qtd. de itens para vender" required>
+            <label for="precoVenda">Moedas por Unidade:</label>
+            <input type="number" id="precoVenda" placeholder="Preço por cada unidade do item" required>
+        </div>
+
         <br>
-        <label for="valorUnitario">Valor Unitário:</label>
-        <input type="number" id="valorUnitario" required>
-        <br>
-        <label for="unidadesVenda">Unidades de Venda:</label>
-        <input type="number" id="unidadesVenda" required>
-        <br>
-        <label for="precoVenda">Preço de Venda:</label>
-        <input type="number" id="precoVenda" required>
+
+        <div id="box">
+            <h3>Preço do item no NPC</h3>
+            <label for="valorUnitario">Moedas por Unidade:</label>
+            <input type="number" id="valorUnitario" placeholder="Preço que os NPCs pagam pelo item" required>
+        </div>      
+        
         <br>
         <button type="button" onclick="calcularLucro()">Calcular Lucro</button>
+        <br>
+
+        <div id="resultado"></div>
+
     </form>
 
-    <div id="resultado"></div>
-
+    <!-- <div id="resultado"></div> -->
+    
     <script>
         // Função para calcular o lucro líquido com base nas unidades compradas, preço de compra,
         // valor unitário, unidades vendidas e preço de venda
@@ -35,26 +59,43 @@
             // Calcula o investimento total
             let investimento = unidadesCompra * precoCompra;
 
+            // Calcula a taxa de imposto sobre o investimento
+            let taxaDeImpostoCompra = 0;
+
+            // Verifica se o preço de compra é menor que 10 vezes o valor unitário
+            if (precoCompra < valorUnitario * 10) {
+                // Se sim, subtrai 1% do investimento total e atribui à taxa de imposto
+                taxaDeImpostoCompra = investimento * 0.01;
+                investimento = investimento + taxaDeImpostoCompra;
+            } else {
+                // Se não, subtrai 10% do investimento total e atribui à taxa de imposto
+                taxaDeImpostoCompra = investimento * 0.10;
+                investimento = investimento + taxaDeImpostoCompra;
+            }
+
             // Calcula o valor total da venda
             let valorTotalVenda = unidadesVenda * precoVenda;
 
-            // Variável para armazenar a taxa de imposto
-            let taxaDeImposto = 0;
+            // Calcula a taxa de imposto sobre a venda
+            let taxaDeImpostoVenda = 0;
 
             // Verifica se o preço de venda é menor que 10 vezes o valor unitário
             if (precoVenda < valorUnitario * 10) {
-                // Se sim, subtrai 1% do valor total e atribui à taxa de imposto
-                taxaDeImposto = valorTotalVenda * 0.01;
+                // Se sim, subtrai 1% do valor total da venda e atribui à taxa de imposto
+                taxaDeImpostoVenda = valorTotalVenda * 0.01;
             } else {
-                // Se não, subtrai 10% do valor total e atribui à taxa de imposto
-                taxaDeImposto = valorTotalVenda * 0.10;
+                // Se não, subtrai 10% do valor total da venda e atribui à taxa de imposto
+                taxaDeImpostoVenda = valorTotalVenda * 0.10;
             }
 
-            // Calcula o lucro líquido (valor total da venda - investimento - taxa de imposto)
-            let lucroLiquido = valorTotalVenda - investimento - taxaDeImposto;
+            // Calcula o lucro líquido (valor total da venda - investimento - taxa de imposto sobre a compra - taxa de imposto sobre a venda)
+            let lucroLiquido = valorTotalVenda - investimento - taxaDeImpostoVenda;
 
             // Retorna o lucro líquido
             return lucroLiquido;
+
+            
+
         }
     </script>
 
@@ -74,10 +115,10 @@
                 let precoVenda = parseFloat(document.getElementById("precoVenda").value);
 
                 // Calcular o lucro usando a função fornecida
-                let lucro = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda);
+                let lucroResultado = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda);
 
                 // Exibir o resultado na página
-                document.getElementById("resultado").innerText = "Lucro líquido: " + lucro.toFixed(0);
+                document.getElementById("resultado").innerText = "Seu lucro será de " + lucroResultado.toFixed(0) + " coins";
             });
         });
     </script>
