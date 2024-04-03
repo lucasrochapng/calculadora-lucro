@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Lucro</title>
+</head>
+<body>
+    <h1>Calculadora de Lucro</h1>
+    <form id="calculoForm">
+        <label for="unidadesCompra">Unidades de Compra:</label>
+        <input type="number" id="unidadesCompra" required>
+        <br>
+        <label for="precoCompra">Preço de Compra:</label>
+        <input type="number" id="precoCompra" required>
+        <br>
+        <label for="valorUnitario">Valor Unitário:</label>
+        <input type="number" id="valorUnitario" required>
+        <br>
+        <label for="unidadesVenda">Unidades de Venda:</label>
+        <input type="number" id="unidadesVenda" required>
+        <br>
+        <label for="precoVenda">Preço de Venda:</label>
+        <input type="number" id="precoVenda" required>
+        <br>
+        <button type="button" onclick="calcularLucro()">Calcular Lucro</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        // Função para calcular o lucro líquido com base nas unidades compradas, preço de compra,
+        // valor unitário, unidades vendidas e preço de venda
+        function calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda) {
+            // Calcula o investimento total
+            let investimento = unidadesCompra * precoCompra;
+
+            // Calcula o valor total da venda
+            let valorTotalVenda = unidadesVenda * precoVenda;
+
+            // Variável para armazenar a taxa de imposto
+            let taxaDeImposto = 0;
+
+            // Verifica se o preço de venda é menor que 10 vezes o valor unitário
+            if (precoVenda < valorUnitario * 10) {
+                // Se sim, subtrai 1% do valor total e atribui à taxa de imposto
+                taxaDeImposto = valorTotalVenda * 0.01;
+            } else {
+                // Se não, subtrai 10% do valor total e atribui à taxa de imposto
+                taxaDeImposto = valorTotalVenda * 0.10;
+            }
+
+            // Calcula o lucro líquido (valor total da venda - investimento - taxa de imposto)
+            let lucroLiquido = valorTotalVenda - investimento - taxaDeImposto;
+
+            // Retorna o lucro líquido
+            return lucroLiquido;
+        }
+    </script>
+
+    <script>
+        // Chamar a função de cálculo do lucro após o carregamento completo do documento
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obter o botão de calcular
+            const btnCalcular = document.querySelector('button');
+
+            // Adicionar um ouvinte de evento ao botão
+            btnCalcular.addEventListener('click', function() {
+                // Obter os valores dos campos de entrada
+                let unidadesCompra = parseFloat(document.getElementById("unidadesCompra").value);
+                let precoCompra = parseFloat(document.getElementById("precoCompra").value);
+                let valorUnitario = parseFloat(document.getElementById("valorUnitario").value);
+                let unidadesVenda = parseFloat(document.getElementById("unidadesVenda").value);
+                let precoVenda = parseFloat(document.getElementById("precoVenda").value);
+
+                // Calcular o lucro usando a função fornecida
+                let lucro = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda);
+
+                // Exibir o resultado na página
+                document.getElementById("resultado").innerText = "Lucro líquido: " + lucro.toFixed(0);
+            });
+        });
+    </script>
+</body>
+</html>
