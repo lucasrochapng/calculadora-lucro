@@ -168,5 +168,61 @@
             });
         });
     </script>
+
+    <!--! ---------------------------------------- -->
+    <script>
+        // Função para permitir o arrastamento do formulário
+        function arrastarElemento(elemento) {
+            let posicaoInicialX = 0;
+            let posicaoInicialY = 0;
+            let posicaoFinalX = 0;
+            let posicaoFinalY = 0;
+            let arrastando = false;
+
+            // Adicionar evento de mouse pressionado
+            elemento.addEventListener("mousedown", iniciarArraste);
+
+            // Adicionar evento de mouse solto
+            document.addEventListener("mouseup", finalizarArraste);
+
+            function iniciarArraste(e) {
+                arrastando = true;
+                // Obter a posição inicial do mouse
+                posicaoInicialX = e.clientX;
+                posicaoInicialY = e.clientY;
+                // Obter a posição inicial do elemento
+                posicaoFinalX = elemento.offsetLeft;
+                posicaoFinalY = elemento.offsetTop;
+                // Adicionar evento de movimento do mouse
+                document.addEventListener("mousemove", arrastarElemento);
+            }
+
+            function arrastarElemento(e) {
+                if (arrastando) {
+                    // Calcular a diferença entre a posição inicial e a posição atual do mouse
+                    let diferencaX = e.clientX - posicaoInicialX;
+                    let diferencaY = e.clientY - posicaoInicialY;
+                    // Definir a nova posição do elemento
+                    elemento.style.left = posicaoFinalX + diferencaX + "px";
+                    elemento.style.top = posicaoFinalY + diferencaY + "px";
+                }
+            }
+
+            function finalizarArraste() {
+                arrastando = false;
+                // Remover o evento de movimento do mouse
+                document.removeEventListener("mousemove", arrastarElemento);
+            }
+        }
+
+        // Obter o formulário de cálculo
+        const calculoForm = document.getElementById("calculoForm");
+
+        // Chamar a função para permitir o arrastamento
+        arrastarElemento(calculoForm);
+    </script>
+    <!--! ---------------------------------------- -->
+
+
 </body>
 </html>
