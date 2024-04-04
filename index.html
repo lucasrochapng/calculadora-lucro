@@ -105,7 +105,15 @@
             if (precoCompra < valorUnitario * 10) {
                 // Se sim, subtrai 1% do investimento total e atribui à taxa de imposto
                 taxaDeImpostoCompra = investimento * 0.01;
-                investimento = investimento + taxaDeImpostoCompra;
+                if (taxaDeImpostoCompra < 100) {
+                    taxaDeImpostoCompra = 100;
+                    investimento = investimento + taxaDeImpostoCompra;
+                }
+                else{
+                    taxaDeImpostoCompra = investimento * 0.01;
+                    investimento = investimento + taxaDeImpostoCompra;
+                }
+                
             } else {
                 // Se não, subtrai 10% do investimento total e atribui à taxa de imposto
                 taxaDeImpostoCompra = investimento * 0.10;
@@ -121,6 +129,7 @@
             // Verifica se o preço de venda é menor que 10 vezes o valor unitário
             if (precoVenda < valorUnitario * 10) {
                 // Se sim, subtrai 1% do valor total da venda e atribui à taxa de imposto
+                
                 taxaDeImpostoVenda = valorTotalVenda * 0.01;
             } else {
                 // Se não, subtrai 10% do valor total da venda e atribui à taxa de imposto
