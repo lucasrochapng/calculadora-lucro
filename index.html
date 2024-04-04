@@ -29,10 +29,14 @@
         <div id="box">
             <h3>Oferta de Venda</h3>
             <label for="unidadesVenda">Unidades:</label>
-        
             <input type="number" id="unidadesVenda" placeholder="Qtd. de itens para vender" required>
             <label for="precoVenda">Moedas por Unidade:</label>
             <input type="number" id="precoVenda" placeholder="Preço por cada unidade do item" required>
+            <div id="box-ofertaGlobal">
+                <input type="checkbox" id="ofertaGlobal" onclick="togglePrecoUnidadeKakele()">
+                <label for="ofertaGlobal">Criar em todos os servidores</label>
+            </div>
+            <input type="number" id="precoUnidadeKakele" placeholder="Digite o valor do kakele coin por unidade" style="display: none;">
         </div>
 
         <br>
@@ -41,7 +45,7 @@
             <h3>Preço do item no NPC</h3>
             <label for="valorUnitario">Moedas por Unidade:</label>
             <input type="number" id="valorUnitario" placeholder="Preço que os NPCs pagam pelo item" required>
-        </div>      
+        </div>
         
         <br>
         <button type="button" onclick="calcularLucro()">CALCULAR LUCRO</button>
@@ -75,6 +79,16 @@
                 return true;
         }
 
+        function togglePrecoUnidadeKakele() {
+            const precoUnidadeKakele = document.getElementById('precoUnidadeKakele');
+            const ofertaGlobal = document.getElementById('ofertaGlobal');
+            if (ofertaGlobal.checked) {
+                precoUnidadeKakele.style.display = 'block';
+            } else {
+                precoUnidadeKakele.style.display = 'none';
+            }
+        }
+
         function exibirNotificacao(mensagem) {
             const notificacao = document.getElementById('notificacao');
             // notificacao.innerText = mensagem;
@@ -88,11 +102,17 @@
 
         // Função para calcular o lucro líquido com base nas unidades compradas, preço de compra,
         // valor unitário, unidades vendidas e preço de venda
-        function calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda) {
+        function calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda, precoUnidadeKakele) {
 
             // Verificar se todos os campos estão preenchidos
             if (!validarCampos()) {
                 return;
+            }
+
+            if (precoUnidadeKakele === '' || isNaN(precoUnidadeKakele)) {
+                precoUnidadeKakele = 0;
+            } else {
+                precoUnidadeKakele = parseFloat(precoUnidadeKakele);
             }
 
             // Calcula o investimento total
@@ -136,8 +156,17 @@
                 taxaDeImpostoVenda = valorTotalVenda * 0.10;
             }
 
+            let precoTotalKakele;
+            
+            if (precoUnidadeKakele !== null) {
+                precoTotalKakele = precoUnidadeKakele * 10;
+            }
+            else {
+                precoTotalKakele = 0;
+            }
+
             // Calcula o lucro líquido (valor total da venda - investimento - taxa de imposto sobre a compra - taxa de imposto sobre a venda)
-            let lucroLiquido = valorTotalVenda - investimento - taxaDeImpostoVenda;
+            let lucroLiquido = valorTotalVenda - investimento - taxaDeImpostoVenda - precoTotalKakele ;
 
             // Retorna o lucro líquido
             return lucroLiquido;
@@ -145,6 +174,13 @@
             
 
         }
+    </script>
+
+    <script>
+        // Chamar a função togglePrecoUnidadeKakele() quando o documento for carregado
+        document.addEventListener("DOMContentLoaded", function() {
+            togglePrecoUnidadeKakele(); // Chama a função para garantir que o estado inicial esteja correto
+        });
     </script>
 
     <script>
@@ -161,9 +197,13 @@
                 let valorUnitario = parseFloat(document.getElementById("valorUnitario").value);
                 let unidadesVenda = parseFloat(document.getElementById("unidadesVenda").value);
                 let precoVenda = parseFloat(document.getElementById("precoVenda").value);
+                
+                let precoUnidadeKakeleElement = document.getElementById("precoUnidadeKakele");
+                let precoUnidadeKakele = precoUnidadeKakeleElement ? parseFloat(precoUnidadeKakeleElement.value) : null;
+
 
                 // Calcular o lucro usando a função fornecida
-                let lucroResultado = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda);
+                let lucroResultado = calcularLucro(unidadesCompra, precoCompra, valorUnitario, unidadesVenda, precoVenda, precoUnidadeKakele);
 
                 // Formatar o número para exibir separadores de milhares e duas casas decimais
                 let lucroFormatado = lucroResultado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

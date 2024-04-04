@@ -65,7 +65,7 @@ h1 {
 
 h3 {
     text-align: center;
-    color: rgb(29, 29, 29);
+    color: rgb(177, 177, 177);
     font-family: "Ubuntu", sans-serif;
     font-weight: 500;
     cursor: default;
@@ -180,5 +180,19 @@ button:hover {
   
   #notificacao.esconder {
     animation: slideOut 2.0s forwards; /* Animação de saída */
+  }
+
+  #box-ofertaGlobal {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: left;
+    gap: 5px;
+    padding-left: 2px;
+  }
+
+  #ofertaGlobal {
+    width: 12px;
+    margin-top: 0.5px;
   }
   
