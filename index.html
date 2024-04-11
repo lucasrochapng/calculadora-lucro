@@ -9,42 +9,60 @@
     
 </head>
 <body>
-    
+
+    <div class="sombra"></div>
+
+    <div class="titulo">
+        <h1>Calculadora de Market</h1>
+        <p>Calcule o melhor lucro para você no marketing do jogo</p>  
+    </div>
     
     <form id="calculoForm">
 
-        <h1>SIMULADOR DE LUCRO KAKELE</h1>
+        <!-- <h1>SIMULADOR DE LUCRO KAKELE</h1> -->
 
         <div id="box">
-            <h3>Oferta de Compra</h3>
+            <div class="box-explicacao">
+                <h3>Oferta de Compra</h3>
+                <label>Preencha o formulário abaixo com as seguintes informações para simular uma oferta de compra no marketing</label>
+            </div>
+            
             <label for="unidadesCompra">Unidades:</label>
-            <input type="number" id="unidadesCompra" placeholder="Qtd. de itens para comprar" required>
+            <input type="number" id="unidadesCompra" placeholder="Insira o número de itens que deseja comprar" required>
         
             <label for="precoCompra">Moedas por Unidade:</label>
-            <input type="number" id="precoCompra" placeholder="Preço por cada unidade do item" required>
+            <input type="number" id="precoCompra" placeholder="Insira o valor do item por unidade" required>
         </div>
 
         <br>
 
         <div id="box">
-            <h3>Oferta de Venda</h3>
+            <div class="box-explicacao">
+                <h3>Oferta de Venda</h3>
+                <label>Preencha o formulário abaixo com as seguintes informações para simular uma oferta de venda no marketing</label>
+            </div>
+            
             <label for="unidadesVenda">Unidades:</label>
-            <input type="number" id="unidadesVenda" placeholder="Qtd. de itens para vender" required>
+            <input type="number" id="unidadesVenda" placeholder="Insira o número de itens que deseja vender" required>
             <label for="precoVenda">Moedas por Unidade:</label>
-            <input type="number" id="precoVenda" placeholder="Preço por cada unidade do item" required>
+            <input type="number" id="precoVenda" placeholder="Insira o valor do item por unidade" required>
             <div id="box-ofertaGlobal">
                 <input type="checkbox" id="ofertaGlobal" onclick="togglePrecoUnidadeKakele()">
                 <label for="ofertaGlobal">Criar em todos os servidores</label>
             </div>
-            <input type="number" id="precoUnidadeKakele" placeholder="Digite o valor do kakele coin por unidade" style="display: none;">
+            <input type="number" id="precoUnidadeKakele" placeholder="Insira o valor do kakele coin por unidade" style="display: none;">
         </div>
 
         <br>
 
         <div id="box">
-            <h3>Preço do item no NPC</h3>
+            <div class="box-explicacao">
+                <h3>Preço do item no NPC</h3>
+                <label>Insira o valor unitário do item, que os NPCs do jogo pagam </label>
+            </div>
+            
             <label for="valorUnitario">Moedas por Unidade:</label>
-            <input type="number" id="valorUnitario" placeholder="Preço que os NPCs pagam pelo item" required>
+            <input type="number" id="valorUnitario" placeholder="Insira o valor do item nos NPCs" required>
         </div>
         
         <br>
@@ -69,6 +87,7 @@
             <p>Preencha todos os campos para calcular o seu lucro!</p>
         </div>
     </div>
+
 
 
     <!-- <div id="resultado"></div> -->
@@ -279,6 +298,7 @@
     </script>
     <!--! ---------------------------------------- -->
 
+    
 
 </body>
 </html>
