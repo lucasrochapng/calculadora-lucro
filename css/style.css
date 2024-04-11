@@ -246,76 +246,21 @@ button:hover {
     margin-top: 0.5px;
   }
   
-  #box-coinshub {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 9999;
-    bottom: 10px;
-    right: 10px;
-    height: 50px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    box-shadow: 0 0 2px 3px;
-    cursor: pointer;
-  }
 
-  #box-coinshub a {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-  }
+.coinshub {
+  color: white;
+}
 
-  #box-coinshub a p {
-    color:rgb(128, 90, 233);
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-  }
+.coinshub p {
+  font-size: 16px;
+}
 
-  #box-coinshub a img {
-    width: 140px;
-  }
-
-  @media (max-width: 450px) {
-    #box-coinshub {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        z-index: 9999;
-        bottom: 10px;
-        right: 10px;
-        height: 30px;
-        width: 100px;
-        background-color: rgb(0, 0, 0);
-        border-radius: 2px;
-        /* box-shadow: 0 0 2px 3px; */
-        cursor: pointer;
-      }
-    
-      #box-coinshub a {
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-      }
-    
-      #box-coinshub a p {
-        color:rgb(128, 90, 233);
-        font-family: "Ubuntu", sans-serif;
-        font-weight: 500;
-        font-size: 8px;
-      }
-    
-      #box-coinshub a img {
-        width: 100px;
-      }
-  }
+.coinshub a {
+  font-size: 16px;
+  /* text-decoration: none; */
+  color: rgb(32, 136, 255);
+}
+  
 
 @media (max-width: 450px) {
   .titulo h1 {
@@ -326,4 +271,5 @@ button:hover {
     color: white;
     font-size: 13px;
   }
+
 }
