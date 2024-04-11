@@ -249,15 +249,17 @@ button:hover {
 
 .coinshub {
   color: white;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .coinshub p {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .coinshub a {
-  font-size: 16px;
+  font-size: 14px;
   /* text-decoration: none; */
+  font-weight: bold;
   color: rgb(32, 136, 255);
 }
   
