@@ -51,14 +51,14 @@ body {
   /* font-family: 'VT323', monospace; */
   font-family: "PixAntiqua";
   color: white;
-  font-weight: 300;
-  font-size: 70px;
+  /* font-weight: 300; */
+  font-size: 60px;
 }
 
 .titulo p {
   color: white;
   font-size: 17px;
-  margin-top: -14px;
+  margin-top: -24px;
 }
 
 #calculoForm {
@@ -268,12 +268,13 @@ button:hover {
 
 @media (max-width: 450px) {
   .titulo h1 {
-    font-size: 50px;
+    font-size: 30px;
   }
   
   .titulo p {
     color: white;
     font-size: 13px;
+    margin-top: -18px;
   }
 
 }
