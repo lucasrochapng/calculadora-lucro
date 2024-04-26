@@ -267,6 +267,11 @@ button:hover {
   
 
 @media (max-width: 450px) {
+
+  .titulo {
+    padding-top: 40px;
+  }
+
   .titulo h1 {
     font-size: 30px;
   }
